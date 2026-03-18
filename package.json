@@ -1,5 +1,6 @@
 {
   "name": "railpath",
+  "description": "A comprehensive monorepo web application suite containing an Admin Dashboard and a Client Portal. Provides real-time geospatial monitoring of rail gates, incident reporting such as near-miss events, and authentication via Firebase.",
   "private": true,
   "workspaces": [
     "apps/*",
