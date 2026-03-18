@@ -1,0 +1,13 @@
+// Move this to apps/client/pages/index.tsx
+import React from 'react';
+
+export default function Home() {
+  return (
+    <main style={{padding:20}}>
+      <div className="card" style={{padding:20}}>
+        <h1>RailPath — Client (PWA)</h1>
+        <p>Mobile-first PWA to notify civilians when the railway gate is closed.</p>
+      </div>
+    </main>
+  );
+}

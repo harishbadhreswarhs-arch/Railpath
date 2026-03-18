@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is an admin
+    function isAdmin() {
+      return request.auth != null && 
+        exists(/databases/$(database)/documents/authorized_admins/$(request.auth.token.email));
+    }
+
+    // GATES: Public read, Admin write
+    match /gates/{gateId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // AUTHORIZED_ADMINS: Users can read their own entry to verify status
+    match /authorized_admins/{email} {
+      allow read: if request.auth != null && email == request.auth.token.email;
+      allow write: if false; // Manually managed in Console or via Admin SDK
+    }
+
+    // NEAR MISSES: Admins can read (for logs) and create (from simulation)
+    match /near_misses/{missId} {
+      allow read, create: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    // CUSTOMER MESSAGES: Any logged-in user can create, only Admins can read
+    match /customer_messages/{messageId} {
+      allow create: if request.auth != null;
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}

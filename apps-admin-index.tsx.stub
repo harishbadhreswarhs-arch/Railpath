@@ -1,0 +1,13 @@
+// Move this to apps/admin/pages/index.tsx
+import React from 'react';
+
+export default function AdminHome() {
+  return (
+    <main style={{padding:20}}>
+      <div className="card" style={{padding:20}}>
+        <h1>RailPath — Admin</h1>
+        <p>Admin dashboard to manage announcements and user preferences.</p>
+      </div>
+    </main>
+  );
+}
