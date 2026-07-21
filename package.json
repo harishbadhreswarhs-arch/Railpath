@@ -10,5 +10,9 @@
     "bootstrap": "npm install",
     "dev:client": "npm --prefix apps/client run dev",
     "dev:admin": "npm --prefix apps/admin run dev"
+  },
+  "dependencies": {
+    "marked": "^18.0.2",
+    "puppeteer": "^24.42.0"
   }
 }
